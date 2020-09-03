@@ -100,15 +100,17 @@ Test::Mojo::Role::Log - test mojo log messages
 
  my $t = Test::Mojo->with_roles('+Log')->new('MyApp');
  
- $t->get_ok('/welcome')
-    ->status_is(200)
-    ->text_is('div#message' => 'Hello!')
-    ->log_debug_like(qr{GET /welcome})
-    ->log_like('info',qr{200},"Response too")
+ $t->get_ok('/gugus')
+    ->log_like(qr{GET "/gugus"})
+    ->log_debug_like(qr{GET "/gugus"})
+    ->log_info_unlike(qr{GET "/gugus"})
+    ->log_debug_like(qr{200 OK.+s.+/s})
+
+ done_testing();
  
 =head1 DESCRIPTION
 
-The L<Test::Mojo::Role::Log> role enhances the regular L<Test::Mojo> with additional methods to check log output.
+The L<Test::Mojo::Role::Log> role enhances L<Test::Mojo> with additional methods to check log output.
 
 =head1 ATTRIBUTES
 
@@ -118,9 +120,9 @@ Points to an array with all the log messages issued since the last request.
 
 =head1 METHODS
  
-L<Test::Mojo::Role::Log> inherits all methods from L<Test::Mojo> and implements the following new ones.
+The role L<Test::Mojo::Role::Log> adds following new methods to L<Test::Mojo> ones.
  
-=head2 log_like($logLevel,$rx,$desc)
+=head2 log_like($rx,$desc)
 
   $t->get_ok('/hello')
     ->log_like(undef,qr{/hello not found},"Request got logged")

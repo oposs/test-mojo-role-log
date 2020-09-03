@@ -18,7 +18,6 @@ nytprof.out
 *.o
 *.bs
 thirdparty/
-my-call-backery-app/
 *.gz
 *.tar
 dist.sh

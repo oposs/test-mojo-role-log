@@ -9,17 +9,19 @@ use Test::Mojo;
 
 my $t = Test::Mojo->with_roles('+Log')->new('MyApp');
 
-$t->get_ok('/welcome')
-   ->status_is(200)
-   ->text_is('div#message' => 'Hello!')
-   ->log_debug_like(qr{GET /welcome})
-   ->log_like('info',qr{200},"Response too")
+$t->get_ok('/gugus')
+   ->log_like(qr{GET "/gugus"})
+   ->log_debug_like(qr{GET "/gugus"})
+   ->log_info_unlike(qr{GET "/gugus"})
+   ->log_debug_like(qr{200 OK.+s.+/s})
+
+done_testing();
 
 ```
 
 # DESCRIPTION
 
-The [Test::Mojo::Role::Log](https://metacpan.org/pod/Test%3A%3AMojo%3A%3ARole%3A%3ALog) role enhances the regular [Test::Mojo](https://metacpan.org/pod/Test%3A%3AMojo) with additional methods to check log output.
+The [Test::Mojo::Role::Log](https://metacpan.org/pod/Test%3A%3AMojo%3A%3ARole%3A%3ALog) role enhances [Test::Mojo](https://metacpan.org/pod/Test%3A%3AMojo) with additional methods to check log output.
 
 # ATTRIBUTES
 
@@ -29,9 +31,9 @@ Points to an array with all the log messages issued since the last request.
 
 # METHODS
 
-[Test::Mojo::Role::Log](https://metacpan.org/pod/Test%3A%3AMojo%3A%3ARole%3A%3ALog) inherits all methods from [Test::Mojo](https://metacpan.org/pod/Test%3A%3AMojo) and implements the following new ones.
+The role [Test::Mojo::Role::Log](https://metacpan.org/pod/Test%3A%3AMojo%3A%3ARole%3A%3ALog) adds following new methods to [Test::Mojo](https://metacpan.org/pod/Test%3A%3AMojo) ones.
 
-## log\_like($logLevel,$rx,$desc)
+## log\_like($rx,$desc)
 
 ```
  $t->get_ok('/hello')
