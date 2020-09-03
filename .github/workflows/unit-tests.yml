@@ -76,7 +76,7 @@ jobs:
       run: make thirdparty
       
     - name: Run tests
-     run: |
+      run: |
         set -e
         make
         make test
