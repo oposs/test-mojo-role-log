@@ -16,7 +16,6 @@ jobs:
       matrix:
         os:
           - ubuntu-20.04
-          - ubuntu-18.04
           # no libssl on windows
           # - windows-latest
 
@@ -26,20 +25,6 @@ jobs:
           - '5.30'
           - '5.32'
  
-        exclude:
-          - os: ubuntu-16.04
-            perl: '5.26'
-          - os: ubuntu-16.04
-            perl: '5.30'
-          - os: ubuntu-16.04
-            node: '13.x'
-          - os: ubuntu-18.04
-            perl: '5.22'
-          - os: windows-latest
-            perl: '5.22'
-          - os: windows-latest
-            perl: '5.26'
-
       fail-fast: false
 
     name: perl${{ matrix.perl }}/${{ matrix.os }}
@@ -50,11 +35,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v1
-
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
 
     - name: Setup perl
       uses: shogo82148/actions-setup-perl@v1
