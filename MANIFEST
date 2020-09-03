@@ -1,0 +1,9 @@
+CHANGES
+COPYRIGHT
+LICENSE
+Makefile.PL
+MANIFEST
+README.md
+t/basic.t
+t/hello.pl
+lib/Test/Mojo/Role/Log.pm
