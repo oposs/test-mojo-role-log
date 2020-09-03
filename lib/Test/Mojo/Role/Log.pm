@@ -1,5 +1,6 @@
 package Test::Mojo::Role::Log;
 use Mojo::Base -role, -signatures;
+our $VERSION = '0.1.0';
 
 around 'new' => sub {
     my $orig = shift;
