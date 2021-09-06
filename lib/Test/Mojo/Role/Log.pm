@@ -1,6 +1,6 @@
 package Test::Mojo::Role::Log;
 use Mojo::Base -role, -signatures;
-our $VERSION = '0.1.0';
+our $VERSION = '0.2.0';
 
 around 'new' => sub {
     my $orig = shift;
@@ -10,9 +10,13 @@ around 'new' => sub {
         $log->unsubscribe(
             message => $log->subscribers('message')->[0] 
         );
-        $log->level('debug');
+        if ($log->can('trace')){
+            $log->level('trace');
+        }
+        else {
+            $log->level('debug');
+        }
     }
-
     $log->on(message => sub {
         my $log = shift;
         push @{$self->logCache}, \@_;
@@ -55,33 +59,50 @@ sub log_unlike ($self,$rx,$desc=undef) {
     return $self->_log_test($rx,undef,'unlike',$desc);
 }
 
+sub log_trace_like ($self,$rx,$desc=undef) {
+    return shift->_log_test($rx,'trace','like',$desc);
+}
+
 sub log_debug_like ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'debug','like',$desc);
 }
+
 sub log_info_like ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'info','like',$desc);
 }
+
 sub log_warn_like ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'warn','like',$desc);
 }
+
 sub log_error_like ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'error','like',$desc);
 }
+
 sub log_fatal_like ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'fatal','like',$desc);
 }
+
+sub log_trace_unlike ($self,$rx,$desc=undef) {
+    return shift->_log_test($rx,'trace','unlike',$desc);
+}
+
 sub log_debug_unlike ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'debug','unlike',$desc);
 }
+
 sub log_info_unlike ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'info','unlike',$desc);
 }
+
 sub log_warn_unlike ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'warn','unlike',$desc);
 }
+
 sub log_error_unlike ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'error','unlike',$desc);
 }
+
 sub log_fatal_unlike ($self,$rx,$desc=undef) {
     return shift->_log_test($rx,'fatal','unlike',$desc);
 }
