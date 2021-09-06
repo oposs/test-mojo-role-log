@@ -142,7 +142,7 @@ Points to an array with all the log messages issued since the last request.
 
 =head1 METHODS
  
-The role L<Test::Mojo::Role::Log> adds following new methods to L<Test::Mojo> ones.
+The role L<Test::Mojo::Role::Log> adds the following new methods to L<Test::Mojo> ones.
  
 =head2 log_like($rx,$desc)
 
@@ -175,6 +175,7 @@ Find a fatal level log message matching the given $rx.
 =head2 *_unlike
 
 For each of the methods above there is ac coresponding
+
 =head1 AUTHOR
 
 Tobias Oetiker E<lt>tobi@oetiker.chE<gt>
