@@ -1,6 +1,6 @@
 package Test::Mojo::Role::Log;
 use Mojo::Base -role, -signatures;
-our $VERSION = '0.2.0';
+our $VERSION = '0.2.1';
 
 around 'new' => sub {
     my $orig = shift;
@@ -151,6 +151,10 @@ The role L<Test::Mojo::Role::Log> adds the following new methods to L<Test::Mojo
  
 Check if the given log message has been issued. All the log messages issued since the start of the current request will get checked.
 If $logLevel is set to undef the logLevel does not get checked.
+
+=head2 log_trace_like($rx,$desc)  (if mojo supports it)
+ 
+Find a trace level log message matching the given $rx.
 
 =head2 log_debug_like($rx,$desc)
  
