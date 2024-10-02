@@ -2,6 +2,7 @@
 
  - fix link to issue tracker
  - fix shift warnings in Perl v5.40
+ - remove unused variable
 
 0.2.1 2021-09-06 08:36:03 +0200 Tobias Oetiker <tobi@oetiker.ch>
 

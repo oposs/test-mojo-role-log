@@ -40,7 +40,6 @@ sub _log_test ($self,$rx,$level,$like,$desc=undef) {
     $desc //= "log ".
         (defined $level ? "level=$level ":"").
         ($like eq 'like' ? "" : "un")."like $rx";
-    my $ok = $like ? 0 : 1;
     my $logs = '';
     for my $entry (@{$self->logCache}){
         my ($l,@msg) =  @$entry;
