@@ -23,8 +23,8 @@ WriteMakefile(
   META_MERGE   => {
     requires  => {perl => '5.022000'},
     resources => {
-      repository  => 'https://github.com/oetiker/mojo-test-log',
-      bugtracker  => 'https://github.com/oetiker/mojo-test-log/issues'
+      repository  => 'https://github.com/oposs/test-mojo-role-log',
+      bugtracker  => 'https://github.com/oposs/test-mojo-role-log/issues'
     },
     no_index => {directory => ['t']}
   },
